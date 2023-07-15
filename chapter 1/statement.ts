@@ -2,12 +2,16 @@ import { Invoice, Performances, invoices } from "./invoices";
 import { Info, Play, plays } from "./plays";
 
 export function statement(invoice: Invoice, plays: Play) {
+  return renderPlainText(createStatementData(invoice, plays));  
+}
+
+function createStatementData(invoice: Invoice, plays: Play) {
   const statementData: any = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformace);
   statementData.totalAmount = totalAmount(statementData);
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-  return renderPlainText(statementData, plays);
+  return statementData;
 
   function enrichPerformace(aPerformance: Performances) {
     const result: any = Object.assign({}, aPerformance);
@@ -64,7 +68,7 @@ export function statement(invoice: Invoice, plays: Play) {
   }
 }
 
-function renderPlainText(data: any, plays: Play) {
+function renderPlainText(data: any) {
   let result = `청구 내역 (고객명: ${data.customer})\n`;
 
   for (let perf of data.performances) {
