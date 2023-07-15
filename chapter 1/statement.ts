@@ -3,6 +3,9 @@ import { Info, Play, plays } from "./plays";
 
 ("use strict");
 export const statement = (invoice: Invoice, plays: Play) => {
+  const playFor = (aPerfoemance: Performances) => {
+    return plays[aPerfoemance.playID];
+  }
   let totalAmount = 0;
   let volumeCredit = 0;
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
@@ -13,7 +16,7 @@ export const statement = (invoice: Invoice, plays: Play) => {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
     let thisAmount = amountFor(perf, play);
     // 포인트를 적립한다.
     volumeCredit += Math.max(perf.audience - 30, 0);
@@ -30,7 +33,11 @@ export const statement = (invoice: Invoice, plays: Play) => {
   return result;
 }
 
+
+
+// aPerformance 명확한 이름
 const amountFor = (aPerformance: Performances, play: Info) => {
+  // 반환 값은 result로
   let result = 0;
 
   switch (play.type) {
