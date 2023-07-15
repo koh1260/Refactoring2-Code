@@ -3,8 +3,10 @@ import { Info, Play, plays } from "./plays";
 
 ("use strict");
 export const statement = (invoice: Invoice, plays: Play) => {
-  return renderPlainText(invoice, plays);
-  function renderPlainText(invoice: Invoice, plays: Play) {
+  const statementData = {};
+  return renderPlainText(statementData, invoice, plays);
+  
+  function renderPlainText(data: object, invoice: Invoice, plays: Play) {
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
     for (let perf of invoice.performances) {
