@@ -13,7 +13,7 @@ export const statement = (invoice: Invoice, plays: Play) => {
   }).format;
 
   for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf, playFor(perf));
+    let thisAmount = amountFor(perf);
     // 포인트를 적립한다.
     volumeCredit += Math.max(perf.audience - 30, 0);
     // 희극 관객 5명마다 추가 포인트를 제공한다.
@@ -30,11 +30,11 @@ export const statement = (invoice: Invoice, plays: Play) => {
   return result;
 
   // aPerformance 명확한 이름
-  function amountFor(aPerformance: Performances, play: Info) {
+  function amountFor(aPerformance: Performances) {
     // 반환 값은 result로
     let result = 0;
 
-    switch (play.type) {
+    switch (playFor(aPerformance).type) {
       case "tragedy":
         result = 40000;
         if (aPerformance.audience > 30) {
@@ -48,7 +48,7 @@ export const statement = (invoice: Invoice, plays: Play) => {
         }
         break;
       default:
-        throw new Error(`알 수 없는 장르: ${play.type}`);
+        throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
     }
     return result;
   };
