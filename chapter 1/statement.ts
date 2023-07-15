@@ -1,43 +1,42 @@
 import { Invoice, Performances, invoices } from "./invoices";
 import { Info, Play, plays } from "./plays";
 
-("use strict");
 export const statement = (invoice: Invoice, plays: Play) => {
   const statementData: any = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances;
   return renderPlainText(statementData, plays);
+};
 
-  function renderPlainText(data: any, plays: Play) {
-    let result = `청구 내역 (고객명: ${data.customer})\n`;
+function renderPlainText(data: any, plays: Play) {
+  let result = `청구 내역 (고객명: ${data.customer})\n`;
 
-    for (let perf of data.performances) {
-      // 청구 내역을 출력한다.
-      result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
-        perf.audience
-      }석)\n`;
-    }
-    result += `총액 : ${usd(totalAmount())}\n`;
-    result += `적립 포인트: ${totalVolumeCredits()}점\n`;
-    return result;
+  for (let perf of data.performances) {
+    // 청구 내역을 출력한다.
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
+      perf.audience
+    }석)\n`;
   }
+  result += `총액 : ${usd(totalAmount())}\n`;
+  result += `적립 포인트: ${totalVolumeCredits()}점\n`;
+  return result;
 
   function totalAmount() {
     let result = 0;
-    for(let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += amountFor(perf);
     }
     return result;
   }
-
+  
   function totalVolumeCredits() {
     let volumeCredits = 0;
-    for(let perf of invoice.performances) {
+    for (let perf of data.performances) {
       volumeCredits += volumeCreditsFor(perf);
     }
     return volumeCredits;
   }
-
+  
   function usd(aNumber: number) {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -50,16 +49,15 @@ export const statement = (invoice: Invoice, plays: Play) => {
     let result = 0;
     result += Math.max(perf.audience - 30, 0);
     // 희극 관객 5명마다 추가 포인트를 제공한다.
-    if ("comedy" === playFor(perf).type)
-    result += Math.floor(perf.audience / 5);
+    if ("comedy" === playFor(perf).type) result += Math.floor(perf.audience / 5);
     return result;
   }
-
+  
   // aPerformance 명확한 이름
   function amountFor(aPerformance: Performances) {
     // 반환 값은 result로
     let result = 0;
-
+  
     switch (playFor(aPerformance).type) {
       case "tragedy":
         result = 40000;
@@ -77,11 +75,13 @@ export const statement = (invoice: Invoice, plays: Play) => {
         throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
     }
     return result;
-  };
-
+  }
+  
   function playFor(aPerfoemance: Performances) {
     return plays[aPerfoemance.playID];
   }
-};
+}
+
+
 
 console.log(statement(invoices, plays));
