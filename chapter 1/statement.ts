@@ -83,22 +83,6 @@ function renderPlainText(data: any, plays: Play) {
   result += `적립 포인트: ${data.totalVolumeCredits}점\n`;
   return result;
 
-  // function totalAmount() {
-  //   let result = 0;
-  //   for (let perf of data.performances) {
-  //     result += perf.amount;
-  //   }
-  //   return result;
-  // }
-
-  // function totalVolumeCredits() {
-  //   let volumeCredits = 0;
-  //   for (let perf of data.performances) {
-  //     volumeCredits += perf.volumeCredits;
-  //   }
-  //   return volumeCredits;
-  // }
-
   function usd(aNumber: number) {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
