@@ -4,19 +4,22 @@ import { Info, Play, plays } from "./plays";
 ("use strict");
 export const statement = (invoice: Invoice, plays: Play) => {
   let totalAmount = 0;
-  let volumeCredit = 0;
+  let volumeCredits = 0;
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
   for (let perf of invoice.performances) {
-    volumeCredit += volumeCreditsFor(perf);
     // 청구 내역을 출력한다.
     result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`;
     totalAmount += amountFor(perf);
   }
+  for(let perf of invoice.performances) {
+    volumeCredits += volumeCreditsFor(perf);
+  }
+
   result += `총액 : ${usd(totalAmount)}\n`;
-  result += `적립 포인트: ${volumeCredit}점\n`;
+  result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
 
   function usd(aNumber: number) {
