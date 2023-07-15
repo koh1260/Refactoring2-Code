@@ -3,13 +3,15 @@ import { Info, Play, plays } from "./plays";
 
 ("use strict");
 export const statement = (invoice: Invoice, plays: Play) => {
-  const statementData = {};
-  return renderPlainText(statementData, invoice, plays);
-  
-  function renderPlainText(data: object, invoice: Invoice, plays: Play) {
-    let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  const statementData: any = {};
+  statementData.customer = invoice.customer;
+  statementData.performances = invoice.performances;
+  return renderPlainText(statementData, plays);
 
-    for (let perf of invoice.performances) {
+  function renderPlainText(data: any, plays: Play) {
+    let result = `청구 내역 (고객명: ${data.customer})\n`;
+
+    for (let perf of data.performances) {
       // 청구 내역을 출력한다.
       result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
         perf.audience
