@@ -19,8 +19,6 @@ describe("statements 테스트", () => {
 
     // when
     const result = statement(invoices, plays);
-    console.log(result);
-
     const expectResult = `청구 내역 (고객명: CUSTOMER)
 PLAY1: $500.00 (40석)
 PLAY2: $360.00 (30석)
