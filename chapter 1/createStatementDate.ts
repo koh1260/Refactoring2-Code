@@ -1,6 +1,13 @@
 import { Invoice, Performances } from "./invoices";
 import { PerformanceCalculator } from "./performance-calculator";
-import { Play } from "./plays";
+import { Info, Play } from "./plays";
+
+function createPerformanceCalculator(
+  aPerformance: Performances,
+  aPlay: Info
+) {
+  return new PerformanceCalculator(aPerformance, aPlay);
+}
 
 export default function createStatementData(invoice: Invoice, plays: Play) {
   const result: any = {};
@@ -11,7 +18,7 @@ export default function createStatementData(invoice: Invoice, plays: Play) {
   return result;
 
   function enrichPerformace(aPerformance: Performances) {
-    const calculator = new PerformanceCalculator(
+    const calculator = createPerformanceCalculator(
       aPerformance,
       playFor(aPerformance),
     );
@@ -25,7 +32,7 @@ export default function createStatementData(invoice: Invoice, plays: Play) {
   function playFor(aPerformance: Performances) {
     return plays[aPerformance.playID];
   }
-  
+
   function totalAmount(data: any) {
     return data.performances.reduce(
       (total: number, p: any) => total + p.amount,
