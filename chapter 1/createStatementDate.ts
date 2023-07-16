@@ -18,27 +18,14 @@ export default function createStatementData(invoice: Invoice, plays: Play) {
     const result: any = Object.assign({}, aPerformance);
     result.play = calculator.play
     result.amount = calculator.amount;
-    result.volumeCredits = volumeCreditsFor(result);
+    result.volumeCredits = calculator.volumeCredits;
     return result;
   }
 
   function playFor(aPerformance: Performances) {
     return plays[aPerformance.playID];
   }
-
-  // aPerformance 명확한 이름
-  function amountFor(aPerformance: any) {
-    return 
-  }
-
-  function volumeCreditsFor(perf: any) {
-    let result = 0;
-    result += Math.max(perf.audience - 30, 0);
-    // 희극 관객 5명마다 추가 포인트를 제공한다.
-    if ("comedy" === perf.play.type) result += Math.floor(perf.audience / 5);
-    return result;
-  }
-
+  
   function totalAmount(data: any) {
     return data.performances.reduce(
       (total: number, p: any) => total + p.amount,
