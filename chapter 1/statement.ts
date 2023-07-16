@@ -1,9 +1,9 @@
-import { Invoice, Performances, invoices } from "./invoices";
-import { Info, Play, plays } from "./plays";
+import { Invoice } from "./invoices";
+import { Play } from "./plays";
 import createStatementData from "./createStatementDate";
 
 export function statement(invoice: Invoice, plays: Play) {
-  return renderPlainText(createStatementData(invoice, plays));  
+  return renderPlainText(createStatementData(invoice, plays));
 }
 
 function renderPlainText(data: any) {
@@ -27,5 +27,3 @@ function renderPlainText(data: any) {
     }).format(aNumber / 100);
   }
 }
-
-console.log(statement(invoices, plays));
