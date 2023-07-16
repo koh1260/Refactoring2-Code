@@ -2,12 +2,12 @@ import { Invoice, Performances } from "./invoices";
 import { Play } from "./plays";
 
 export default function createStatementData(invoice: Invoice, plays: Play) {
-    const statementData: any = {};
-    statementData.customer = invoice.customer;
-    statementData.performances = invoice.performances.map(enrichPerformace);
-    statementData.totalAmount = totalAmount(statementData);
-    statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-    return statementData;
+    const result: any = {};
+    result.customer = invoice.customer;
+    result.performances = invoice.performances.map(enrichPerformace);
+    result.totalAmount = totalAmount(result);
+    result.totalVolumeCredits = totalVolumeCredits(result);
+    return result;
   
     function enrichPerformace(aPerformance: Performances) {
       const result: any = Object.assign({}, aPerformance);
