@@ -10,7 +10,7 @@ export class PerformanceCalculator{
         this.play = aPlay;
     }
 
-    getAmount() {
+    get amount() {
         // 반환 값은 result로
     let result = 0;
 

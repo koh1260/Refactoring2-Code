@@ -16,14 +16,19 @@ export default function createStatementData(invoice: Invoice, plays: Play) {
       playFor(aPerformance),
     );
     const result: any = Object.assign({}, aPerformance);
-    result.play = playFor(result);
-    result.amount = calculator.getAmount();
+    result.play = calculator.play
+    result.amount = calculator.amount;
     result.volumeCredits = volumeCreditsFor(result);
     return result;
   }
 
   function playFor(aPerformance: Performances) {
     return plays[aPerformance.playID];
+  }
+
+  // aPerformance 명확한 이름
+  function amountFor(aPerformance: any) {
+    return 
   }
 
   function volumeCreditsFor(perf: any) {
