@@ -2,10 +2,15 @@ import { Province } from "./province"
 import { sampleProvinceData } from "./sample-province-data"
 
 describe('province', () => {
-    it('shortfall', () => {
-        // given
-        const asia = new Province(sampleProvinceData());
+    let asia: Province;
 
+    beforeEach(() => {
+        // 테스트 전에 항상 실행.
+        // 테스트마다 새로운 객체 할당 -> 테스트 간의 의존성 X
+        asia = new Province(sampleProvinceData())
+    })
+
+    it('shortfall', () => {
         // when
         const shortfall = asia.shortfall;
 
@@ -14,9 +19,6 @@ describe('province', () => {
     })
 
     it('profit', () => {
-        // given
-        const asia = new Province(sampleProvinceData());
-
         // when 
         const profit = asia.profit;
 
