@@ -16,6 +16,6 @@ export function sampleProvinceData(): Doc {
             {name: 'Sinope', cost: 10, production: 6},
         ],
         demand: 30,
-        price: 30
+        price: 20
     };
 }
