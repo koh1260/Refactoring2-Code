@@ -3,7 +3,7 @@ import { Doc } from "./sample-province-data";
 
 export class Province {
   private _name: string;
-  private _producers: any[];
+  private _producers: Producer [];
   private _totalProduction: number;
   private _demand: number;
   private _price: number;
