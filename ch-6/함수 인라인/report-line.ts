@@ -10,13 +10,9 @@ const customer: Customer = {
 
 export function reportLines(aCustomer: Customer) {
     const lines: string[][] = [];
-    gatherCustomerData(lines, aCustomer);
+    lines.push(['name', aCustomer.name]);
+    lines.push(['location', aCustomer.location]);
     return lines;
-}
-
-function gatherCustomerData(out: string[][], aCustomer: Customer) {
-    out.push(['name', aCustomer.name]);
-    out.push(['location', aCustomer.location]);
 }
 
 console.log(reportLines(customer));
