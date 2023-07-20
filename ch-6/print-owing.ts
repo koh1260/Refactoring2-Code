@@ -19,9 +19,13 @@ function printOwing(invoice: Invoices) {
     today.getDate() + 30
   );
 
-  console.log(`고객명: ${invoice.customer}`);
-  console.log(`채무액: ${outstanding}`);
-  console.log(`마감일: ${invoice.duDate.toLocaleDateString()}`);
+  printDetail();
+
+  function printDetail() {
+    console.log(`고객명: ${invoice.customer}`);
+    console.log(`채무액: ${outstanding}`);
+    console.log(`마감일: ${invoice.duDate!.toLocaleDateString()}`);
+  }
 
   function printBanner() {
     console.log("*******************");
@@ -29,7 +33,5 @@ function printOwing(invoice: Invoices) {
     console.log("*******************");
   }
 }
-
-
 
 printOwing(invoices);
