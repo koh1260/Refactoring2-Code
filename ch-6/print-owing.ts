@@ -11,13 +11,15 @@ function printOwing(invoice: Invoices) {
     outstanding += o.amount;
   }
 
-  const today = Clock.today;
+  recordDueDate(invoice)
 
-  invoice.duDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 30
-  );
+//   const today = Clock.today;
+
+//   invoice.duDate = new Date(
+//     today.getFullYear(),
+//     today.getMonth(),
+//     today.getDate() + 30
+//   );
 
   printDetail(invoice, outstanding);
 
@@ -26,6 +28,15 @@ function printOwing(invoice: Invoices) {
     console.log("***** 고객 채무 *****");
     console.log("*******************");
   }
+}
+
+function recordDueDate(invoice: Invoices) {
+    const today = Clock.today;
+    invoice.duDate = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + 30
+      );
 }
 
 function printDetail(invoice: Invoices, outstanding: number) {
