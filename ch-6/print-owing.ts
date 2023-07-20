@@ -4,7 +4,7 @@ import { Clock } from "./clock";
 
 function printOwing(invoice: Invoices) {
   printBanner();
-  let outstanding = calcOutstanding(invoice);
+  const outstanding = calcOutstanding(invoice);
   
   recordDueDate(invoice);
 
@@ -18,11 +18,11 @@ function printOwing(invoice: Invoices) {
 }
 
 function calcOutstanding(invoice: Invoices) {
-  let outstanding = 0;
+  let result = 0;
   for (const o of invoice.orders) {
-    outstanding += o.amount;
+    result += o.amount;
   }
-  return outstanding;
+  return result;
 }
 
 function recordDueDate(invoice: Invoices) {
