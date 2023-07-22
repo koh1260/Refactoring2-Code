@@ -19,7 +19,7 @@ export const client2 = () => {
 export const client3 = () => {
   const rawReading = acquirRading();
   const aReading = new Reading(rawReading.customer, rawReading.quantity, rawReading.month, rawReading.year)
-  const baseChargeAmount = aReading.calculateBaseCharge;
+  const baseChargeAmount = aReading.baseCharge;
 
   return baseChargeAmount;
 };
