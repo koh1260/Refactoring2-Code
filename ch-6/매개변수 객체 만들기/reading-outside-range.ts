@@ -1,4 +1,4 @@
-import { Station, station } from "./station";
+import { Reading, Station, station } from "./station";
 
 export class NumberRange {
   private _min: number;
@@ -15,11 +15,15 @@ export class NumberRange {
   get max() {
     return this._max;
   }
+
+  contains(arg: number) {
+    return (arg > this._min && arg < this._max);
+  }
 }
 
 export function readingOutsideRange(
   station: Station,
   range: NumberRange,
 ) {
-  return station.readings.filter((r) => r.temp < range.min || r.temp > range.max);
+  return station.readings.filter((r) => !range.contains(r.temp));
 }
