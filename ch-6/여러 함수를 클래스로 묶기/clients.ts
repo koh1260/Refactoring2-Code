@@ -7,7 +7,7 @@ function taxableChargeFn(aReading: Reading) {
 export const client1 = () => {
   const rawReading = acquirRading();
   const aReading = new Reading(rawReading.customer, rawReading.quantity, rawReading.month, rawReading.year)
-  const taxableCharge = taxableChargeFn(aReading);
+  const taxableCharge = aReading.taxableCharge;
 
   return taxableCharge;
 };
