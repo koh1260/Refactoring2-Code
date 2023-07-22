@@ -1,5 +1,5 @@
 import { client1, client2, client3 } from "./clients";
-import { Reading } from "./functions";
+import { Reading, enrichReading } from "./functions";
 
 describe("clients test", () => {
   it("client1", () => {
@@ -27,5 +27,22 @@ describe("clients test", () => {
 
     // then
     expect(result).toEqual(2.5);
+  });
+
+  it('check reading unchanged', () => {
+    // given
+    const baseReading: Reading = {
+      customer: "ivan",
+      quantity: 10,
+      month: 5,
+      year: 2017,
+    };
+    const oracle = Object.assign({}, baseReading);
+
+    // when
+    enrichReading(baseReading);
+
+    // then
+    expect(baseReading).toEqual(oracle);
   });
 });
