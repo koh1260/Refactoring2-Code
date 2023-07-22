@@ -18,7 +18,7 @@ describe("reading-outside-range", () => {
     const numberRange = new NumberRange(48, 57);
 
     // when
-    const result = readingOutsideRange(station, 48, numberRange);
+    const result = readingOutsideRange(station, numberRange);
 
     // then
     expect(result[0].temp).toEqual(47);

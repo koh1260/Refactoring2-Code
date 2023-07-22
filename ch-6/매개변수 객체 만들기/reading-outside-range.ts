@@ -19,8 +19,7 @@ export class NumberRange {
 
 export function readingOutsideRange(
   station: Station,
-  min: number,
   range: NumberRange,
 ) {
-  return station.readings.filter((r) => r.temp < min || r.temp > range.max);
+  return station.readings.filter((r) => r.temp < range.min || r.temp > range.max);
 }
