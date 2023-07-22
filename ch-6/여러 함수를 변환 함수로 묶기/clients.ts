@@ -9,9 +9,9 @@ export const client1 = () => {
 };
 
 export const client2 = () => {
-  const aReading = acquirRading();
-  const baseCharge =
-    baseRate(aReading.month, aReading.year) * aReading.quantity;
+  const rawReading = acquirRading();
+  const aReading = enrichReading(rawReading);
+  const baseCharge =aReading.baseCharge;
 
     return baseCharge;
 };
