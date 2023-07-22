@@ -3,6 +3,7 @@ export interface Reading {
   quantity: number;
   month: number;
   year: number;
+  baseCharge?: number;
 }
 
 export const acquirRading = () => {
@@ -31,7 +32,12 @@ export const baseRate = (month: number, year: number) => {
   return 0.25;
 };
 
+export const calculatorBaseCharge = (aReading: Reading) => {
+    return baseRate(aReading.month, aReading.year) * aReading.quantity;
+  }
+
 export const enrichReading = (original: Reading) => {
     const result = Object.assign({}, original);
+    result.baseCharge = calculatorBaseCharge(result);
     return result;
 }
