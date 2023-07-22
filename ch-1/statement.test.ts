@@ -1,6 +1,6 @@
 import { Invoice } from "./invoices";
 import { Play } from "./plays";
-import { statement } from "./statement";
+import { statement } from "./review";
 
 describe("statements 테스트", () => {
   it("statements", () => {

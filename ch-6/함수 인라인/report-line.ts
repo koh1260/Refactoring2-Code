@@ -15,4 +15,4 @@ export function reportLines(aCustomer: Customer) {
     return lines;
 }
 
-console.log(reportLines(customer));
+// console.log(reportLines(customer));

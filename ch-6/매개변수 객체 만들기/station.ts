@@ -3,7 +3,7 @@ export interface Station {
   readings: Reading[];
 }
 
-interface Reading {
+export interface Reading {
   temp: number;
   time: Date;
 }

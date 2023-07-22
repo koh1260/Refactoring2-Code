@@ -27,3 +27,10 @@ export function readingOutsideRange(
 ) {
   return station.readings.filter((r) => !range.contains(r.temp));
 }
+
+const test = {
+    last: 'hae',
+    first: 'snug',
+}
+
+const {first,last} = test;
