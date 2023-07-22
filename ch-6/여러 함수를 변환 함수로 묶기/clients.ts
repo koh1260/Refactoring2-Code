@@ -1,4 +1,4 @@
-import { Reading, acquirRading, baseRate, taxThreshord } from "./functions";
+import { Reading, acquirRading, baseRate, enrichReading, taxThreshord } from "./functions";
 
 export const client1 = () => {
   const aReading = acquirRading();
@@ -17,7 +17,8 @@ export const client2 = () => {
 };
 
 export const client3 = () => {
-  const aReading = acquirRading();
+  const rawReading = acquirRading();
+  const aReading = enrichReading(rawReading);
   const baseChargeAmount = calculatorBaseCharge(aReading);
 
   return baseChargeAmount;
