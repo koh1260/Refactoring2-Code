@@ -4,6 +4,7 @@ export interface Reading {
   month: number;
   year: number;
   baseCharge?: number;
+  taxableCharge?: number;
 }
 
 export const acquirRading = () => {
@@ -39,5 +40,6 @@ export const calculatorBaseCharge = (aReading: Reading) => {
 export const enrichReading = (original: Reading) => {
     const result = Object.assign({}, original);
     result.baseCharge = calculatorBaseCharge(result);
+    result.taxableCharge = Math.max(0, result.baseCharge! - taxThreshord(result.year))
     return result;
 }
