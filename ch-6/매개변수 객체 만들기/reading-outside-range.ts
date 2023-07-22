@@ -1,10 +1,10 @@
 import { Station } from "./station";
 
-class NumberRange {
+export class NumberRange {
   private _min: number;
   private _max: number;
 
-  constructor(min: number, max: number, range: NumberRange) {
+  constructor(min: number, max: number) {
     this._min = min;
     this._max = max;
   }
@@ -20,7 +20,8 @@ class NumberRange {
 export function readingOutsideRange(
   station: Station,
   min: number,
-  max: number
+  max: number,
+  range: NumberRange | null,
 ) {
   return station.readings.filter((r) => r.temp < min || r.temp > max);
 }

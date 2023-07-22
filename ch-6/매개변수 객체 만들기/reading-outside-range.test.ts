@@ -1,4 +1,4 @@
-import { readingOutsideRange } from "./reading-outside-range";
+import { NumberRange, readingOutsideRange } from "./reading-outside-range";
 import { Station } from "./station";
 
 describe("reading-outside-range", () => {
@@ -15,8 +15,10 @@ describe("reading-outside-range", () => {
       ],
     };
 
+    const numberRange = new NumberRange(47, 58);
+
     // when
-    const result = readingOutsideRange(station, 48, 53);
+    const result = readingOutsideRange(station, 48, 53, null);
 
     // then
     expect(result[0].temp).toEqual(47);
