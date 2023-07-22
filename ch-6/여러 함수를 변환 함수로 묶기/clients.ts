@@ -3,8 +3,7 @@ import { Reading, acquirRading, baseRate, calculatorBaseCharge, enrichReading, t
 export const client1 = () => {
   const rawReading = acquirRading();
   const aReading = enrichReading(rawReading);
-  const base = aReading.baseCharge;
-  const taxableCharge = Math.max(0, base! - taxThreshord(aReading.year));
+  const taxableCharge = Math.max(0, aReading.baseCharge! - taxThreshord(aReading.year));
 
   return taxableCharge;
 };
