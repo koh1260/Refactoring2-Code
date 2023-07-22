@@ -1,4 +1,4 @@
-import { Station } from "./station";
+import { Station, station } from "./station";
 
 export class NumberRange {
   private _min: number;
@@ -20,8 +20,7 @@ export class NumberRange {
 export function readingOutsideRange(
   station: Station,
   min: number,
-  max: number,
-  range: NumberRange | null,
+  range: NumberRange,
 ) {
-  return station.readings.filter((r) => r.temp < min || r.temp > max);
+  return station.readings.filter((r) => r.temp < min || r.temp > range.max);
 }
