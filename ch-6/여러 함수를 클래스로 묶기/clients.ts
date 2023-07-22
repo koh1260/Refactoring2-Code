@@ -1,9 +1,13 @@
 import { Reading, acquirRading, baseRate, taxThreshord } from "./functions";
 
+function taxableChargeFn(aReading: Reading) {
+  return Math.max(0, aReading.baseCharge - taxThreshord(aReading.year))
+}
+
 export const client1 = () => {
   const rawReading = acquirRading();
   const aReading = new Reading(rawReading.customer, rawReading.quantity, rawReading.month, rawReading.year)
-  const taxableCharge = Math.max(0, aReading.baseCharge - taxThreshord(aReading.year));
+  const taxableCharge = taxableChargeFn(aReading);
 
   return taxableCharge;
 };
